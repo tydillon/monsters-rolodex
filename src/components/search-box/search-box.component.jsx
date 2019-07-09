@@ -1,7 +1,7 @@
 import React from 'react'
 import './search-box.styles.css'
 
-// destructuring this component so that it's generic and can be used later
+// destructuring so that this is generic and can be used later
 export const SearchBox = ({ placeholder, handleChange }) => {
   return (
     <input
