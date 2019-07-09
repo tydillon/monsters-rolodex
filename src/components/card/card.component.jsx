@@ -1,6 +1,7 @@
 import React from 'react'
 import './card.styles.css'
 
+//props is the individual monster from the card-list map
 export const Card = props => {
   return (
     <div className="card-container">
