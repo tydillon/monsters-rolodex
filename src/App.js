@@ -11,12 +11,20 @@ class App extends Component {
       monsters: [],
       searchField: ''
     }
+
+    // this isn't implicitly defined when I define the handleChange method below.
+    // this line binds 'this' to the function when we define it so that the code still works
+    // we wouldn't need this if I had used an arrow function to define handleChange
+    this.handleChange = this.handleChange.bind(this)
   }
   //gets the users
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then(users => this.setState({ monsters: users }))
+  }
+  handleChange(e) {
+    this.setState({ searchField: e.target.value })
   }
   render() {
     //same as const searchField = this.state.searchField && const monsters = this.state.monsters
@@ -31,7 +39,7 @@ class App extends Component {
         <SearchBox
           placeholder="search monsters"
           // sets the state of searchField to the input from the textbox
-          handleChange={e => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
         {/* passes in the list of filtered monsters as a prop */}
         <CardList monsters={filteredMonsters} />
